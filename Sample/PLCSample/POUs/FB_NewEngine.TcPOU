@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="FB_NewEngine" Id="{02831598-4827-4a85-86c1-fc3eee11db63}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_NewEngine EXTENDS FB_Engine
+VAR_INPUT
+	nGear		:	INT := 2;
+	fVelocity	:	LREAL := 8.0;
+END_VAR
+VAR
+	gearInternal		:	INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Gear" Id="{b1007588-fa86-4c5d-a5f7-94ec3322c92d}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'variable'}
+PROPERTY PUBLIC Gear : INT]]></Declaration>
+      <Get Name="Get" Id="{ebd6f5ce-c79c-44c6-80f7-8307ec620339}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Gear := gearInternal;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{1d27ec8f-7fbe-4e19-ada8-caaba952686c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[gearInternal := Gear;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Start" Id="{e96a3668-413d-4934-80e9-328bd8763976}">
+      <Declaration><![CDATA[METHOD PUBLIC Start
+VAR_INPUT
+	nGear		:	INT := 2;
+	fVelocity	:	LREAL := 8.0;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.Start(nGear, fVelocity);
+Gear := nGear;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_NewEngine">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_NewEngine.Gear.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_NewEngine.Gear.Set">
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_NewEngine.Start">
+      <LineId Id="12" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

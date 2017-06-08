@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="MAIN" Id="{956a2d5c-6bee-4359-b4e8-bbb283d0e9fa}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbNewEngine			: FB_NewEngine;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbNewEngine.Start(1, 7.5);
+
+ 
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="115" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

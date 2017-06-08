@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="FB_Engine" Id="{ee886422-c9f9-465c-9669-80f0cd7f24c5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_Engine
+VAR
+	maxVelocityInternal		:	LREAL := 50.0;
+	velocityInternal		:	LREAL;	
+	temperatureInternal		:	INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="MaxVelocity" Id="{5832ae5d-f51d-4b6c-87eb-563a1939fbb9}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'variable'}
+PROPERTY PUBLIC MaxVelocity : LREAL
+]]></Declaration>
+      <Get Name="Get" Id="{8f75e2ed-6d47-474d-988e-69529e92b9c9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[MaxVelocity := maxVelocityInternal;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{abb1ec62-326c-4d9b-ba92-261e81a5ec78}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[maxVelocityInternal := MaxVelocity;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Start" Id="{7719b75f-dddc-4422-85ad-2e331cc1ade1}">
+      <Declaration><![CDATA[METHOD PUBLIC Start
+VAR_INPUT
+	nGear		:	INT := 2;
+	fVelocity	:	LREAL := 8.0;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (fVelocity < MaxVelocity) THEN
+	velocityInternal := fVelocity;
+ELSE
+	velocityInternal := MaxVelocity;
+END_IF
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Stop" Id="{bce89059-4627-457c-9768-faf38c91a607}">
+      <Declaration><![CDATA[METHOD PUBLIC Stop
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[velocityInternal := 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Temperature" Id="{3873a212-d323-481e-aed4-cdebb77b7820}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'variable'}
+PROPERTY PUBLIC Temperature : INT]]></Declaration>
+      <Get Name="Get" Id="{12432250-c84f-4114-8c13-ade6b73ea879}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Temperature := temperatureInternal;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Velocity" Id="{346c8242-4523-47c1-8419-be4413853455}">
+      <Declaration><![CDATA[{attribute 'monitoring' := 'variable'}
+PROPERTY PUBLIC Velocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{7ed5d34e-d8dc-4506-9902-bd51cd2c86fb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Velocity := velocityInternal;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_Engine">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Engine.MaxVelocity.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Engine.MaxVelocity.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Engine.Start">
+      <LineId Id="12" Count="3" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Engine.Stop">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Engine.Temperature.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Engine.Velocity.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
