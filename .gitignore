@@ -5,6 +5,7 @@
 _CompileInfo
 _Libraries
 *.compiled-library
+*.project.~u
 
 # User-specific files
 *.suo
